@@ -84,6 +84,7 @@ namespace DelayedShards
 
         internal static bool IsInPilotsSeat(Player player)
         {
+            if (player == null) return false;
             TakeoverChair chair = ClientGame.Current.PlayerShip?.GetModule<Helm>()?.Chair as TakeoverChair;
             return chair != null && !chair.IsAvailable && player == chair.photonView.Owner;
         }
@@ -101,7 +102,7 @@ namespace DelayedShards
 
         internal static void DisplayLocalMessage(RejectReason reason = RejectReason.None)
         {
-            if (reason != RejectReason.None || Configs.AlwaysRecieveNotifications.Value || (Configs.RecieveNotificationsAsPilot.Value && IsInPilotsSeat(PhotonNetwork.LocalPlayer)))
+            if (reason != RejectReason.None)
                 Messaging.Notification(GetDisplayMessage(reason), messageTimeout);
         }
 
@@ -109,7 +110,7 @@ namespace DelayedShards
         {
             return reason switch
             {
-                RejectReason.None => $"{EscortsAvailable} escort shards available\n{MinefieldsAvailable} minefield shards availabe",
+                RejectReason.None => $"{EscortsAvailable} escort shards available\n{MinefieldsAvailable} minefield shards available",
                 RejectReason.CooldownTimer => "Data shards on cooldown",
                 RejectReason.VoidJump => "Data shards not available during void jump",
                 RejectReason.EscortShardCount => "No escort shards available",

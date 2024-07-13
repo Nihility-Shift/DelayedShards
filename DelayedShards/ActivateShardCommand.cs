@@ -31,8 +31,6 @@ namespace DelayedShards
 
         public override void Execute(string arguments, int SenderID)
         {
-            if (!PhotonNetwork.IsMasterClient) return; //TODO remove when Void Manager is updated to 1.1.3 or above
-
             if (!Helper.IsInPilotsSeat(Game.GetPlayerFromID(SenderID).PhotonPlayer))
             {
                 Messaging.Echo("You must be in the pilot's seat to activate data shards", false);

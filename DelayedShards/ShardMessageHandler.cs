@@ -37,10 +37,10 @@ namespace DelayedShards
 
                 case Requests.Sent:
                     if (PhotonNetwork.IsMasterClient || sender != PhotonNetwork.MasterClient) break;
+                    Configs.hostHasMod = true;
                     int[] shards = (int[])arguments[2];
                     Helper.EscortsAvailable = shards[0];
                     Helper.MinefieldsAvailable = shards[1];
-                    Helper.DisplayLocalMessage();
                     break;
 
                 case Requests.Activate:
@@ -70,7 +70,12 @@ namespace DelayedShards
 
         internal static void SubscribeToCountUpdates()
         {
-            if (PhotonNetwork.IsMasterClient) return;
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Configs.hostHasMod = true;
+                return;
+            }
+            Configs.hostHasMod = false;
 
             Send(MyPluginInfo.PLUGIN_GUID, GetIdentifier(typeof(ShardMessageHandler)), PhotonNetwork.MasterClient,
                 new object[] { MyPluginInfo.PLUGIN_VERSION, Requests.Subscribe });
@@ -91,7 +96,6 @@ namespace DelayedShards
             if (player == null || player.Length == 0)
             {
                 player = subscribedPlayers.ToArray();
-                Helper.DisplayLocalMessage();
             }
 
             Send(MyPluginInfo.PLUGIN_GUID, GetIdentifier(typeof(ShardMessageHandler)), player,

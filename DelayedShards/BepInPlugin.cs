@@ -2,6 +2,7 @@
 using BepInEx.Logging;
 using HarmonyLib;
 using System.Reflection;
+using UnityEngine;
 
 namespace DelayedShards
 {
@@ -9,7 +10,7 @@ namespace DelayedShards
     {
         internal const string PLUGIN_GUID = "id107.delayedshards";
         internal const string PLUGIN_NAME = "DelayedShards";
-        internal const string PLUGIN_VERSION = "0.0.0";
+        internal const string PLUGIN_VERSION = "0.0.2";
     }
 
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
@@ -23,6 +24,7 @@ namespace DelayedShards
             Log = Logger;
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), MyPluginInfo.PLUGIN_GUID);
             Configs.Load(this);
+            new GameObject("DataShardGUI", typeof(DataShardGUI)) { hideFlags = HideFlags.HideAndDontSave };
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         }
     }
