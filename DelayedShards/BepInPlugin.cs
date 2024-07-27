@@ -10,7 +10,7 @@ namespace DelayedShards
     {
         internal const string PLUGIN_GUID = "id107.delayedshards";
         internal const string PLUGIN_NAME = "DelayedShards";
-        internal const string PLUGIN_VERSION = "0.0.2";
+        internal const string PLUGIN_VERSION = "0.0.3";
     }
 
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]

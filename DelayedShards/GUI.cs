@@ -12,20 +12,16 @@ namespace DelayedShards
         public override void Draw()
         {
             Label("");
-            KeyCode escortKeyCode = Configs.SummonEscortConfig.Value;
-            if (GUITools.DrawChangeKeybindButton("Change Summon Escort Keybind", ref escortKeyCode))
+            if (GUITools.DrawCheckbox("Add inserted shards to queue (host)", ref Configs.enableQueue))
             {
-                Configs.SummonEscortConfig.Value = escortKeyCode;
+                CarryablesSocketPatch.ToggleQueue();
             }
-            KeyCode minefieldKeyCode = Configs.SummonMinefieldConfig.Value;
-            if (GUITools.DrawChangeKeybindButton("Change Summon Minefield Keybind", ref minefieldKeyCode))
-            {
-                Configs.SummonMinefieldConfig.Value = minefieldKeyCode;
-            }
+            GUITools.DrawCheckbox("Display GUI when in the pilots seat (client)", ref Configs.DisplayGUIAsPilot);
+            GUITools.DrawCheckbox("Always display GUI (client)", ref Configs.AlwaysDisplayGUI);
 
             Label("");
-            GUITools.DrawCheckbox("Display GUI when in the pilots seat", ref Configs.DisplayGUIAsPilot);
-            GUITools.DrawCheckbox("Always display GUI", ref Configs.AlwaysDisplayGUI);
+            GUITools.DrawChangeKeybindButton("Change Summon Escort Keybind", ref Configs.SummonEscortConfig);
+            GUITools.DrawChangeKeybindButton("Change Summon Minefield Keybind", ref Configs.SummonMinefieldConfig);
 
             Label("");
             BeginHorizontal();

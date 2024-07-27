@@ -50,6 +50,7 @@ namespace DelayedShards
             EscortsAvailable--;
             lastShardActivated = DateTime.Now;
             ShardMessageHandler.SendShardCount();
+            CheckPreventShardInsert();
             return RejectReason.None;
         }
 
@@ -67,7 +68,22 @@ namespace DelayedShards
             MinefieldsAvailable--;
             lastShardActivated = DateTime.Now;
             ShardMessageHandler.SendShardCount();
+            CheckPreventShardInsert();
             return RejectReason.None;
+        }
+
+        internal static void ShardInsertedActivated()
+        {
+            lastShardActivated = DateTime.Now;
+        }
+
+        private static void CheckPreventShardInsert()
+        {
+            if (Configs.enableQueue.Value) return;
+
+            CarryablesSocketPatch.GalaxyMapSocket.SetState(Gameplay.Carryables.SocketState.Closed);
+            Tools.DelayDoUnique(CarryablesSocketPatch.GalaxyMapSocket,
+                () => CarryablesSocketPatch.GalaxyMapSocket.SetState(Gameplay.Carryables.SocketState.Open), 8000);
         }
 
         internal static void Reset()

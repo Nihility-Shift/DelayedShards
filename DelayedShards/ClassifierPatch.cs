@@ -14,6 +14,15 @@ namespace DelayedShards
 
         static bool Prefix(Classifier __instance, AbstractScenarioClassifierCondition abstractScenarioClassifierCondition, bool value, Classifier.ClassifierContext context)
         {
+            if (!Configs.enableQueue.Value)
+            {
+                if (__instance.Id == "Generic_DataShard_OnInsert_SummonEscort" || __instance.Id == "Generic_DataShard_OnInsert_DataShard_SummonMinefield")
+                {
+                    ShardInsertedActivated();
+                }
+                return true;
+            }
+
             if (!value) return true;
 
             if (__instance.Id == "Generic_DataShard_OnInsert_SummonEscort")

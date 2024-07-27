@@ -13,6 +13,8 @@ namespace DelayedShards
         internal static ConfigEntry<float> GUIPosX;
         internal static ConfigEntry<float> GUIPosY;
 
+        internal static ConfigEntry<bool> enableQueue;
+
         internal static bool hostHasMod = false;
 
         internal static void Load(BepinPlugin plugin)
@@ -24,6 +26,8 @@ namespace DelayedShards
 
             GUIPosX = plugin.Config.Bind("DelayedShards", "GUIPosX", 0.17f);
             GUIPosY = plugin.Config.Bind("DelayedShards", "GUIPosY", 0.789f);
+
+            enableQueue = plugin.Config.Bind("DelayedShards", "EnableQueue", true);
         }
     }
 }
