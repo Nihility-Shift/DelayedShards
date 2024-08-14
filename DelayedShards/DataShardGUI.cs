@@ -1,7 +1,6 @@
 ﻿using CG.Client;
 using CG.Game;
 using Photon.Pun;
-using UI.MainHUD;
 using UnityEngine;
 
 namespace DelayedShards

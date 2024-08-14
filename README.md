@@ -4,7 +4,7 @@
 
 # DelayedShards
 
-Version 0.0.3  
+Version 0.0.4  
 For Game Version 0.26.3  
 Developed by 18107  
 Requires VoidManager 1.1.7

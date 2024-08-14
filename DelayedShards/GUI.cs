@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using VoidManager.CustomGUI;
+﻿using VoidManager.CustomGUI;
 using VoidManager.Utilities;
 using static UnityEngine.GUILayout;
 

@@ -101,7 +101,7 @@ namespace DelayedShards
         internal static bool IsInPilotsSeat(Player player)
         {
             if (player == null) return false;
-            TakeoverChair chair = ClientGame.Current.PlayerShip?.GetModule<Helm>()?.Chair as TakeoverChair;
+            TakeoverChair chair = ClientGame.Current?.PlayerShip?.GetModule<Helm>()?.Chair as TakeoverChair;
             return chair != null && !chair.IsAvailable && player == chair.photonView.Owner;
         }
 
@@ -135,6 +135,13 @@ namespace DelayedShards
                 RejectReason.MinefieldError => "Error caused by host leaving, insert minefield shard to fix",
                 _ => throw new ArgumentException(),
             };
+        }
+
+        public static bool ButtonPressed(UnityEngine.KeyCode key)
+        {
+            if (key == UnityEngine.KeyCode.None)
+                return false;
+            return BepInEx.UnityInput.Current.GetKeyDown(key);
         }
     }
 }

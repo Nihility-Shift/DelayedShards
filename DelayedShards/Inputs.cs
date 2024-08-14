@@ -1,7 +1,7 @@
-﻿using BepInEx;
-using CG.Input;
+﻿using CG.Input;
 using CG;
 using Photon.Pun;
+using VoidManager.Utilities;
 
 namespace DelayedShards
 {
@@ -10,11 +10,17 @@ namespace DelayedShards
         internal static void HandleInputs()
         {
             if (!Helper.IsInPilotsSeat(PhotonNetwork.LocalPlayer))
+            {
+                if (Tools.PlayerShipExists && !ServiceBase<InputService>.Instance.CursorVisibilityControl.IsCursorShown &&
+                    (Helper.ButtonPressed(Configs.SummonEscortConfig.Value) || Helper.ButtonPressed(Configs.SummonMinefieldConfig.Value)))
+                {
+                    Messaging.Notification("You must be in the pilot's seat to activate data shards", Helper.messageTimeout);
+                }
                 return;
+            }
 
             if (!ServiceBase<InputService>.Instance.CursorVisibilityControl.IsCursorShown &&
-                Configs.SummonEscortConfig.Value != UnityEngine.KeyCode.None &&
-                UnityInput.Current.GetKeyDown(Configs.SummonEscortConfig.Value))
+                Helper.ButtonPressed(Configs.SummonEscortConfig.Value))
             {
                 if (PhotonNetwork.IsMasterClient)
                 {
@@ -29,8 +35,7 @@ namespace DelayedShards
             }
 
             if (!ServiceBase<InputService>.Instance.CursorVisibilityControl.IsCursorShown &&
-                Configs.SummonMinefieldConfig.Value != UnityEngine.KeyCode.None &&
-                UnityInput.Current.GetKeyDown(Configs.SummonMinefieldConfig.Value))
+                Helper.ButtonPressed(Configs.SummonMinefieldConfig.Value))
             {
                 if (PhotonNetwork.IsMasterClient)
                 {
