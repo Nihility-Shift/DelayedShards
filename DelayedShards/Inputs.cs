@@ -9,7 +9,7 @@ namespace DelayedShards
     {
         internal static void HandleInputs()
         {
-            if (!Helper.IsInPilotsSeat(PhotonNetwork.LocalPlayer))
+            if (Game.PlayerShipExists && !Helper.IsInPilotsSeat(PhotonNetwork.LocalPlayer))
             {
                 if (!ServiceBase<InputService>.Instance.CursorVisibilityControl.IsCursorShown &&
                     (Helper.ButtonPressed(Configs.SummonEscortConfig.Value) || Helper.ButtonPressed(Configs.SummonMinefieldConfig.Value)))
