@@ -24,6 +24,7 @@ Requires VoidManager 1.1.8
 - Clients without the mod can use `!ActivateShard` and `!CountShards` instead of keybinds
 
 ### 👥 Multiplayer Functionality
+
 - ✅ Client
   - The Pilot should have the mod
 - ✅ Host
