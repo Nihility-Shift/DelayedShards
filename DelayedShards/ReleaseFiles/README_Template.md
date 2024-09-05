@@ -28,8 +28,7 @@ Requires VoidManager [VoidManagerVersion]
   - The Pilot should have the mod
 - ✅ Host
   - The host must have the mod
-
-***If the host leaves the game and the new host doesn't have the mod, all inserted shards will be lost!!!***
+- ***If the host leaves the game and the new host doesn't have the mod, all inserted shards will be lost!!!***
 
 ---------------------
 
@@ -37,6 +36,6 @@ Requires VoidManager [VoidManagerVersion]
 
 Ensure that you have [BepInEx 5](https://thunderstore.io/c/void-crew/p/BepInEx/BepInExPack/) (stable version 5 **MONO**) and [VoidManager](https://thunderstore.io/c/void-crew/p/VoidCrewModdingTeam/VoidManager/) installed.
 
-## ✔️ Mod installation - **Unzip the contents into the BepInEx plugin directory**
+#### ✔️ Mod installation - **Unzip the contents into the BepInEx plugin directory**
 
 Drag and drop `[ModName].dll` into `Void Crew\BepInEx\plugins`
