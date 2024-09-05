@@ -11,7 +11,7 @@ namespace DelayedShards
         {
             if (!Helper.IsInPilotsSeat(PhotonNetwork.LocalPlayer))
             {
-                if (Tools.PlayerShipExists && !ServiceBase<InputService>.Instance.CursorVisibilityControl.IsCursorShown &&
+                if (!ServiceBase<InputService>.Instance.CursorVisibilityControl.IsCursorShown &&
                     (Helper.ButtonPressed(Configs.SummonEscortConfig.Value) || Helper.ButtonPressed(Configs.SummonMinefieldConfig.Value)))
                 {
                     Messaging.Notification("You must be in the pilot's seat to activate data shards", Helper.messageTimeout);
