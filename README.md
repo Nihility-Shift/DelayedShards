@@ -6,27 +6,27 @@
 
 Version 0.0.5  
 For Game Version 0.27.0  
-Developed by 18107  
-Requires VoidManager 1.1.8
+Developed by 18107, Dragon  
+Requires VoidManager 
 
 ---------------------
 
-### 💡 Function 
+### 💡 Functions - **Stores functional shards when inserted into the astral map, which may be activated on demand**
 
-- Inserting shards into the map adds them to a queue for the pilot to activate at any time.
-- On insertion of a data shard, it's execution is paused and stored in a list owned by the host.
-- On execution request, a shard's execution is unpaused/runs.
-- Creates a GUI to display how many escord and minefield shards are stored/queued.
-- Adds keybinds for shard execution.
+- On insertion of a minefield or excort shard, a related counter is incrimented.
+- Clients can request activation of stored data shards.
+- Provides a GUI display of stored escort and minefield shards.
+- Provides keybinds and commands for shard execution.
 - Settings can be configured at any time via F5 menu.
+- Data is propogated from host to clients with the mod.
 
 ### 🎮 Client Usage
 
 - The Host must have the mod.
 - The Pilot should have the mod.
-- Shard count can be viewed in the bottom left corner when visible. Default visibility requires the local player to actively be piloting
-- View shard count and configure keybinds at F5 > Mod Settings > Delayed Shards.
-- Activate Escort and Minefield shards with `2` and `3` respectively while sitting in the pilot's seat.
+- Shard count can be viewed in the bottom left corner when visible. Default visibility requires the local player to actively be piloting.
+- Configure mod settings at F5 > Mod Settings > Delayed Shards.
+- Activate Escort and Minefield shards with keys `2` and `3` while sitting in the pilot's seat.
 - Clients without the mod can use `!ActivateShard` and `!CountShards` instead of keybinds.
 
 ### 👥 Multiplayer Functionality
@@ -36,6 +36,8 @@ Requires VoidManager 1.1.8
 - ✅ Host
   - The host must have the mod
   - ***If the host leaves the game and the new host doesn't have the mod, all inserted shards will be lost!!!***
+- ✅ Session
+  - Requires the room to be marked as Mod_Session.
 
 ---------------------
 
