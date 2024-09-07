@@ -14,10 +14,12 @@ namespace DelayedShards
             VoidManager.Events.Instance.LateUpdate += (sender, e) => Inputs.HandleInputs();
         }
 
-        public override MultiplayerType MPType => MultiplayerType.Host;
+        public override MultiplayerType MPType => MultiplayerType.Session;
 
-        public override string Author => "18107";
+        public override string Author => MyPluginInfo.PLUGIN_AUTHORS;
 
-        public override string Description => "Inserting shards into the map adds them to a queue for the pilot to activate at any time";
+        public override string Description => MyPluginInfo.PLUGIN_DESCRIPTION;
+
+        public override string ThunderstoreID => MyPluginInfo.PLUGIN_THUNDERSTORE_ID;
     }
 }

@@ -7,6 +7,7 @@ using static DelayedShards.Helper;
 
 namespace DelayedShards
 {
+    //caches vanilla actions for given datashard type. 
     [HarmonyPatch(typeof(Classifier), "OnTriggerConditionChanged")]
     internal class ClassifierPatch
     {

@@ -13,8 +13,8 @@
     </RestoreAdditionalProjectSources>
     <RootNamespace>DelayedShards</RootNamespace>
     <Authors>18107</Authors>
-    <AssemblyTitle>Inserting shards into the map adds them to a queue for the pilot to activate at any time</AssemblyTitle>
-    <Description>Inserting shards into the map adds them to a queue for the pilot to activate at any time</Description>
+    <AssemblyTitle>Inserting shards into the map adds them to a queue for the pilot to activate at any time. Session Mod.</AssemblyTitle>
+    <Description>Inserting shards into the map adds them to a queue for the pilot to activate at any time. Session Mod.</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>embedded</DebugType>

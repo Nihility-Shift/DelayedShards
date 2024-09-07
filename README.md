@@ -13,15 +13,21 @@ Requires VoidManager 1.1.8
 
 ### 💡 Function 
 
-- Inserting shards into the map adds them to a queue for the pilot to activate at any time
+- Inserting shards into the map adds them to a queue for the pilot to activate at any time.
+- On insertion of a data shard, it's execution is paused and stored in a list owned by the host.
+- On execution request, a shard's execution is unpaused/runs.
+- Creates a GUI to display how many escord and minefield shards are stored/queued.
+- Adds keybinds for shard execution.
+- Settings can be configured at any time via F5 menu.
 
 ### 🎮 Client Usage
 
-- The Host must have the mod
-- The Pilot should have the mod
-- View shard count and configure keybinds at F5 > Mod Settings > Delayed Shards
-- Activate Escort and Minefield shards with `2` and `3` respectively while sitting in the pilot's seat
-- Clients without the mod can use `!ActivateShard` and `!CountShards` instead of keybinds
+- The Host must have the mod.
+- The Pilot should have the mod.
+- Shard count can be viewed in the bottom left corner when visible. Default visibility requires the local player to actively be piloting
+- View shard count and configure keybinds at F5 > Mod Settings > Delayed Shards.
+- Activate Escort and Minefield shards with `2` and `3` respectively while sitting in the pilot's seat.
+- Clients without the mod can use `!ActivateShard` and `!CountShards` instead of keybinds.
 
 ### 👥 Multiplayer Functionality
 
@@ -29,7 +35,7 @@ Requires VoidManager 1.1.8
   - The Pilot should have the mod
 - ✅ Host
   - The host must have the mod
-- ***If the host leaves the game and the new host doesn't have the mod, all inserted shards will be lost!!!***
+  - ***If the host leaves the game and the new host doesn't have the mod, all inserted shards will be lost!!!***
 
 ---------------------
 
