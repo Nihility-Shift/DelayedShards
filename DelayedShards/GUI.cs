@@ -6,7 +6,7 @@ namespace DelayedShards
 {
     internal class GUI : ModSettingsMenu
     {
-        public override string Name() => "Delayed Shards";
+        public override string Name() => MyPluginInfo.USERS_PLUGIN_NAME;
 
         public override void Draw()
         {
@@ -28,12 +28,12 @@ namespace DelayedShards
             Label("GUI Position");
             FlexibleSpace();
             EndHorizontal();
-            Label("x: ");
+            Label($"X: {Configs.GUIPosX.Value.ToString("P")}");
             if (GUITools.DrawSlider(ref Configs.GUIPosX, 0, 1))
             {
                 DataShardGUI.Instance.UpdateWindowPos();
             }
-            Label("y: ");
+            Label($"Y: {Configs.GUIPosY.Value.ToString("P")}");
             if (GUITools.DrawSlider(ref Configs.GUIPosY, 0, 1))
             {
                 DataShardGUI.Instance.UpdateWindowPos();
