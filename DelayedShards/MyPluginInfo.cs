@@ -6,7 +6,7 @@ namespace DelayedShards
         public const string PLUGIN_GUID = $"{PLUGIN_ORIGINAL_AUTHOR}.{PLUGIN_NAME}";
         public const string PLUGIN_NAME = "DelayedShards";
         public const string USERS_PLUGIN_NAME = "Delayed Shards";
-        public const string PLUGIN_VERSION = "0.0.5";
+        public const string PLUGIN_VERSION = "0.0.6";
         public const string PLUGIN_DESCRIPTION = "Stores functional shards when inserted into the astral map, which may be activated on demand. Session Mod.";
         public const string PLUGIN_ORIGINAL_AUTHOR = "18107";
         public const string PLUGIN_AUTHORS = "18107, Dragon";

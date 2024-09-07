@@ -4,7 +4,7 @@
 
 # Delayed Shards
 
-Version 0.0.5  
+Version 0.0.6  
 For Game Version 0.27.0  
 Developed by 18107, Dragon  
 Requires VoidManager 
