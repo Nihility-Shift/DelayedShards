@@ -1,12 +1,9 @@
-﻿using CG.Game.Scenarios.Actions;
+﻿using CG.Game;
 using CG.Game.Scenarios;
 using Photon.Pun;
 using System;
 using System.Linq;
-using Photon.Realtime;
-using CG.Game;
-using CG.Ship.Modules;
-using CG.Game.SpaceObjects.Controllers;
+using UnityEngine;
 using VoidManager.Utilities;
 
 namespace DelayedShards
@@ -15,15 +12,15 @@ namespace DelayedShards
     {
         public const long messageTimeout = 8000;
 
-        internal static Classifier.ClassifierContext EscortContext;
+        internal const string EscortID = "Generic_DataShard_OnInsert_SummonEscort";
         internal static AbstractScenarioClassifierAction[] EscortActions;
         internal static int EscortsAvailable = 0;
 
-        internal static Classifier.ClassifierContext MinefieldContext;
+        internal const string MinefieldID = "Generic_DataShard_OnInsert_DataShard_SummonMinefield";
         internal static AbstractScenarioClassifierAction[] MinefieldActions;
         internal static int MinefieldsAvailable = 0;
 
-        private static DateTime lastShardActivated = DateTime.MinValue;
+        private static float lastShardActivated = 0f;
 
         internal enum RejectReason
         {
@@ -32,23 +29,23 @@ namespace DelayedShards
             VoidJump,
             EscortShardCount,
             MinefieldShardCount,
-            EscortError,
-            MinefieldError
         }
 
         internal static RejectReason SummonEscort()
         {
             if (EscortsAvailable <= 0) return RejectReason.EscortShardCount;
-            if (EscortActions == null) return RejectReason.EscortError;
+            if (Time.time - lastShardActivated < 8) return RejectReason.CooldownTimer;
             if ((DateTime.Now - lastShardActivated).TotalSeconds < 8) return RejectReason.CooldownTimer;
             if (IsInVoidJump()) return RejectReason.VoidJump;
 
+            Classifier.ClassifierContext context = AbstractScenarioClassifierCondition.BuildContext(null, null, ClientGame.Current.PlayerShip, GameSessionManager.ActiveSector);
             foreach (AbstractScenarioClassifierAction action in EscortActions)
             {
-                action.Invoke(EscortContext);
+                action.Invoke(context);
             }
+
             EscortsAvailable--;
-            lastShardActivated = DateTime.Now;
+            lastShardActivated = Time.time;
             ShardMessageHandler.SendShardCount();
             CheckPreventShardInsert();
             return RejectReason.None;
@@ -57,13 +54,13 @@ namespace DelayedShards
         internal static RejectReason SummonMinefield()
         {
             if (MinefieldsAvailable <= 0) return RejectReason.MinefieldShardCount;
-            if (MinefieldActions == null) return RejectReason.MinefieldError;
-            if ((DateTime.Now - lastShardActivated).TotalSeconds < 8) return RejectReason.CooldownTimer;
+            if (Time.time - lastShardActivated < 8) return RejectReason.CooldownTimer;
             if (IsInVoidJump()) return RejectReason.VoidJump;
 
+            Classifier.ClassifierContext context = AbstractScenarioClassifierCondition.BuildContext(null, null, ClientGame.Current.PlayerShip, GameSessionManager.ActiveSector);
             foreach (AbstractScenarioClassifierAction action in MinefieldActions)
             {
-                action.Invoke(MinefieldContext);
+                action.Invoke(context);
             }
             MinefieldsAvailable--;
             lastShardActivated = DateTime.Now;
@@ -88,11 +85,9 @@ namespace DelayedShards
 
         internal static void Reset()
         {
-            EscortContext = null;
             EscortActions = null;
             EscortsAvailable = 0;
-            MinefieldContext = null;
-            MinefieldContext = null;
+            MinefieldActions = null;
             MinefieldsAvailable = 0;
             ShardMessageHandler.subscribedPlayers = ShardMessageHandler.subscribedPlayers.Intersect(PhotonNetwork.PlayerListOthers).ToList();
             ShardMessageHandler.SendShardCount();
@@ -131,8 +126,6 @@ namespace DelayedShards
                 RejectReason.VoidJump => "Data shards not available during void jump",
                 RejectReason.EscortShardCount => "No escort shards available",
                 RejectReason.MinefieldShardCount => "No minefield shards available",
-                RejectReason.EscortError => "Error caused by host leaving, insert escort shard to fix",
-                RejectReason.MinefieldError => "Error caused by host leaving, insert minefield shard to fix",
                 _ => throw new ArgumentException(),
             };
         }

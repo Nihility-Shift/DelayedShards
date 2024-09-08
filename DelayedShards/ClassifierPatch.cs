@@ -1,25 +1,21 @@
 ﻿using CG.Game.Scenarios;
-using CG.Game.Scenarios.Actions;
 using CG.Game.Scenarios.Conditions;
 using HarmonyLib;
-using System.Reflection;
 using static DelayedShards.Helper;
 
 namespace DelayedShards
 {
-    //caches vanilla actions for given datashard type. 
+    //Stop shards insertions early and incriment related counter. 
     [HarmonyPatch(typeof(Classifier), "OnTriggerConditionChanged")]
     internal class ClassifierPatch
     {
-        private static readonly FieldInfo delayMsField = AccessTools.Field(typeof(Timer), "delayMs");
-
         static bool Prefix(Classifier __instance, AbstractScenarioClassifierCondition abstractScenarioClassifierCondition, bool value, Classifier.ClassifierContext context)
         {
             if (!Configs.enableQueue.Value)
             {
                 if (__instance.Id == "Generic_DataShard_OnInsert_SummonEscort" || __instance.Id == "Generic_DataShard_OnInsert_DataShard_SummonMinefield")
                 {
-                    ShardInsertedActivated();
+                    ShardInsertedActivated(); //set delay in case of fast queue mode switch.
                 }
                 return true;
             }
@@ -28,13 +24,6 @@ namespace DelayedShards
 
             if (__instance.Id == "Generic_DataShard_OnInsert_SummonEscort")
             {
-                if (EscortActions == null)
-                {
-                    EscortContext = context;
-                    EscortActions = __instance.Actions;
-                    delayMsField.SetValue((Timer)EscortActions[0], 0);
-                    delayMsField.SetValue((Timer)EscortActions[2], 2000);
-                }
                 __instance.HasBeenInvoked = true;
                 EscortsAvailable++;
                 ShardMessageHandler.SendShardCount();
@@ -42,13 +31,6 @@ namespace DelayedShards
             }
             else if (__instance.Id == "Generic_DataShard_OnInsert_DataShard_SummonMinefield")
             {
-                if (MinefieldActions == null)
-                {
-                    MinefieldContext = context;
-                    MinefieldActions = __instance.Actions;
-                    delayMsField.SetValue((Timer)MinefieldActions[0], 0);
-                    delayMsField.SetValue((Timer)MinefieldActions[1], 8000);
-                }
                 __instance.HasBeenInvoked = true;
                 MinefieldsAvailable++;
                 ShardMessageHandler.SendShardCount();
