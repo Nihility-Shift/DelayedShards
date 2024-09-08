@@ -1,6 +1,11 @@
 ﻿using CG.Game;
 using CG.Game.Scenarios;
+using CG.Game.Scenarios.Actions;
+using CG.Game.Scenarios.Conditions;
+using CG.Game.SpaceObjects.Controllers;
+using CG.Ship.Modules;
 using Photon.Pun;
+using Photon.Realtime;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -35,7 +40,6 @@ namespace DelayedShards
         {
             if (EscortsAvailable <= 0) return RejectReason.EscortShardCount;
             if (Time.time - lastShardActivated < 8) return RejectReason.CooldownTimer;
-            if ((DateTime.Now - lastShardActivated).TotalSeconds < 8) return RejectReason.CooldownTimer;
             if (IsInVoidJump()) return RejectReason.VoidJump;
 
             Classifier.ClassifierContext context = AbstractScenarioClassifierCondition.BuildContext(null, null, ClientGame.Current.PlayerShip, GameSessionManager.ActiveSector);
@@ -63,15 +67,16 @@ namespace DelayedShards
                 action.Invoke(context);
             }
             MinefieldsAvailable--;
-            lastShardActivated = DateTime.Now;
+            lastShardActivated = Time.time;
             ShardMessageHandler.SendShardCount();
             CheckPreventShardInsert();
             return RejectReason.None;
         }
 
+        //set delay in case of fast enabled switch.
         internal static void ShardInsertedActivated()
         {
-            lastShardActivated = DateTime.Now;
+            lastShardActivated = Time.time;
         }
 
         private static void CheckPreventShardInsert()
