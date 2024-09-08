@@ -1,3 +1,7 @@
+## 0.0.7
+- Fixed issue with new host not being able to drop shards.
+- Added Void Manager GUI style setting.
+
 ## 0.0.6
 - Updated for 0.27.0
 - Added GUI position Percentages

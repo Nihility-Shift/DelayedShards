@@ -4,7 +4,7 @@
 
 # Delayed Shards
 
-Version 0.0.6  
+Version 0.0.7  
 For Game Version 0.27.0  
 Developed by 18107, Dragon  
 Requires VoidManager 
@@ -48,3 +48,7 @@ Ensure that you have [BepInEx 5](https://thunderstore.io/c/void-crew/p/BepInEx/B
 #### ✔️ Mod installation - **Unzip the contents into the BepInEx plugin directory**
 
 Drag and drop `DelayedShards.dll` into `Void Crew\BepInEx\plugins`
+
+
+## Known Issues
+  - If the host leaves the game and the new host doesn't have the mod, all inserted shards will be lost.
