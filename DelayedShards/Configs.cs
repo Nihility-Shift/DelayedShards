@@ -9,6 +9,7 @@ namespace DelayedShards
         internal static ConfigEntry<KeyCode> SummonMinefieldConfig;
         internal static ConfigEntry<bool> DisplayGUIAsPilot;
         internal static ConfigEntry<bool> AlwaysDisplayGUI;
+        internal static ConfigEntry<bool> VoidManagerUIStyle;
 
         internal static ConfigEntry<float> GUIPosX;
         internal static ConfigEntry<float> GUIPosY;
@@ -23,6 +24,7 @@ namespace DelayedShards
             SummonMinefieldConfig = plugin.Config.Bind("DelayedShards", "SummonMinefield", KeyCode.Alpha3);
             DisplayGUIAsPilot = plugin.Config.Bind("DelayedShards", "RecieveNotificationsAsPilot", true);
             AlwaysDisplayGUI = plugin.Config.Bind("DelayedShards", "AlwaysRecieveNotifications", false);
+            VoidManagerUIStyle = plugin.Config.Bind("DelayedShards", "VoidManagerUIStyle", false);
 
             GUIPosX = plugin.Config.Bind("DelayedShards", "GUIPosX", 0.17f);
             GUIPosY = plugin.Config.Bind("DelayedShards", "GUIPosY", 0.789f);
