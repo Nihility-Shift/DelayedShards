@@ -90,9 +90,6 @@ $ThunderstorePluginName = $ConfigData["ReleaseProperties"]["ThunderstorePluginNa
 # The current version of the mod. Used for file version, BepinPlugin, and Thunderstore manifest.
 $PluginVersion = $ConfigData["ReleaseProperties"]["PluginVersion"]
 
-# The version of VoidManager utilized by the mod.
-$VoidManagerVersion = $ConfigData["ReleaseProperties"]["VoidManagerVersion"]
-
 # The version of Void Crew the mod is built for.
 [string]$GameVersion = $ConfigData["ReleaseProperties"]["GameVersion"]
 
@@ -249,7 +246,7 @@ $ManifestData.name = $ThunderstorePluginName
 $ManifestData.version_number = $PluginVersion
 $ManifestData.website_url = $WebpageLink
 $ManifestData.description = $PluginDescription
-$ManifestData.dependencies = $DependencyStrings.Replace("[VoidManagerVersion]", $VoidManagerVersion).Split(',').Trim();
+$ManifestData.dependencies = $DependencyStrings.Replace("[VoidManagerVersion]", $DependencyStrings).Split(',').Trim();
 
 ConvertTo-Json $ManifestData | % { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File -FilePath "$OutputDir\manifest.json" -Encoding UTF8
 
@@ -263,7 +260,7 @@ $ReadmeData = Get-Content -Path $ReadmeFilePath -Encoding UTF8
 $ReadmeData = $ReadmeData.Replace("[GameVersion]", $GameVersion)
 $ReadmeData = $ReadmeData.Replace("[ModVersion]", $PluginVersion)
 $ReadmeData = $ReadmeData.Replace("[Authors]", $PluginAuthors)
-$ReadmeData = $ReadmeData.Replace("[VoidManagerVersion]", $VoidManagerVersion)
+$ReadmeData = $ReadmeData.Replace("[Dependencies]", $DependencyStrings)
 $ReadmeData = $ReadmeData.Replace("[UserModName]", $UserPluginName)
 $ReadmeData = $ReadmeData.Replace("[ModName]", $PluginName)
 $ReadmeData = $ReadmeData.Replace("[Description]", $PluginDescription)
