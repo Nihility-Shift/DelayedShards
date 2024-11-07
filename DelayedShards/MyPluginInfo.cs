@@ -1,3 +1,4 @@
+#pragma warning disable CS1591
 namespace DelayedShards
 {
     //Auto-Generated File. Created by PreBuild.ps1
@@ -13,3 +14,4 @@ namespace DelayedShards
         public const string PLUGIN_THUNDERSTORE_ID = "VoidCrewModdingTeam/Delayed_Shards";
     }
 }
+#pragma warning restore CS1591

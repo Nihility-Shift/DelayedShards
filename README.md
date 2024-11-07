@@ -7,7 +7,7 @@
 Version 0.0.7  
 For Game Version 0.27.0  
 Developed by 18107, Dragon  
-Requires VoidManager 
+Requires:  BepInEx-BepInExPack-5.4.2100, VoidCrewModdingTeam-VoidManager-1.2.2
 
 ---------------------
 
