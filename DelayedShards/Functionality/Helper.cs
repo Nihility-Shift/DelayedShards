@@ -1,4 +1,6 @@
-﻿using Photon.Pun;
+﻿using CG.Game;
+using CG.Objects;
+using Photon.Pun;
 using Photon.Realtime;
 using ResourceAssets;
 using System;
@@ -35,7 +37,13 @@ namespace DelayedShards.Functionality
             if (Time.time - lastShardActivated < 8) return RejectReason.CooldownTimer;
             if (IsInVoidJump()) return RejectReason.VoidJump;
 
-            CarryableContainer.Instance.GetAssetDefById(EscortGUID).Asset.GetComponent<CarryableSummonConsumptionEffect>().SummonUnits();
+            CarryableObject carryable = CarryableContainer.Instance.GetAssetDefById(EscortGUID).Asset;
+            IConsumptionEffect ComsumptionComponent = carryable.GetComponent<IConsumptionEffect>();
+            if (ComsumptionComponent != null)
+            {
+                ClientGame.Current.ModelEventBus.OnCarryableConsumed.Publish(carryable, GameSessionManager.ActiveSector);
+                ComsumptionComponent.OnConsume();
+            }
 
             EscortsAvailable--;
             lastShardActivated = Time.time;
