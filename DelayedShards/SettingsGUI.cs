@@ -1,4 +1,5 @@
-﻿using VoidManager.CustomGUI;
+﻿using DelayedShards.Functionality;
+using VoidManager.CustomGUI;
 using VoidManager.Utilities;
 using static UnityEngine.GUILayout;
 

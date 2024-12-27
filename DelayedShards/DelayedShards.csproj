@@ -3,7 +3,7 @@
     <TargetFramework>net472</TargetFramework>
     <AssemblyName>DelayedShards</AssemblyName>
     <Product>DelayedShards</Product>
-    <Version>0.0.7</Version>
+    <Version>0.1.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <RestoreAdditionalProjectSources>
@@ -13,7 +13,7 @@
     </RestoreAdditionalProjectSources>
     <RootNamespace>DelayedShards</RootNamespace>
     <Authors>18107</Authors>
-    <AssemblyTitle>Stores functional shards when inserted into the astral map, which may be activated on demand. Session Mod.</AssemblyTitle>
+    <AssemblyTitle>Stores functional shards when inserted into the astral map, which may be activated on demand.</AssemblyTitle>
     <Description>Stores functional shards when inserted into the astral map, which may be activated on demand. Session Mod.</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -52,3 +52,4 @@ Drag and drop `[ModName].dll` into `Void Crew\BepInEx\plugins`
 
 ## Known Issues
   - If the host leaves the game and the new host doesn't have the mod, all inserted shards will be lost.
+  - Audio for escort/minefield summon played on insertion rather than on execution.

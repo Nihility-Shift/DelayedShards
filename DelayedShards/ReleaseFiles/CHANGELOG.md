@@ -1,3 +1,6 @@
+## 0.1.0
+- Fixed for Void Crew 1.0.3
+
 ## 0.0.7
 - Fixed issue with new host not being able to drop shards.
 - Added Void Manager GUI style setting.
