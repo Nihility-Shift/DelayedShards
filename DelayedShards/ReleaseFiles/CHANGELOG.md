@@ -1,3 +1,6 @@
+## 0.1.1
+- Fixed audio calls
+
 ## 0.1.0
 - Fixed for Void Crew 1.0.3
 

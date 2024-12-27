@@ -4,7 +4,7 @@
 
 # Delayed Shards
 
-Version 0.1.0  
+Version 0.1.1  
 For Game Version 1.0.3  
 Developed by 18107, Dragon  
 Requires:  BepInEx-BepInExPack-5.4.2100, VoidCrewModdingTeam-VoidManager-1.2.5
